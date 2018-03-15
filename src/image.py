@@ -1,10 +1,10 @@
-import urllib
+import urllib.request
 from io import BytesIO
 from PIL import Image
 
 ### WARNING adapt this constant to your computer and rechearch
 name='test.jpg'
-keyword='drink'  # 'drink%20alcool' #'drink+alcool'
+keyword='matthieu'  # 'drink%20alcool' #'drink+alcool'
 
 def importImage(keyword,name):
     
