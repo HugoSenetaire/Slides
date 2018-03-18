@@ -14,6 +14,7 @@ def dataCut(datapath):
     words_list = []
     for heading, grp_wrds in groupby(doc.Words, key=lambda x: str(x.Style)):
         # List of the succesive style of text
+        # Séparation des groupes de mots successifs, dès qu'on change de style on change des groupes.
         styles_list += [heading]
         # List of the words grouped by style
         words_list += [''.join(str(word) for word in grp_wrds)]
@@ -37,6 +38,7 @@ def generateXMLTitle(presentation, slide, words_list):
 
 
 # Generation of the XML for a "Normal" text
+# ind conserve le titre de la partie et i l'emplacement des words choisi
 def generateXMLNormal(presentation, slide, words_list, ind, i):
     slide.set("layout", "title+paragraph")
     presentation.append(etree.SubElement(slide, "title"))
