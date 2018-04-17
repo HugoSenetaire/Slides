@@ -2,7 +2,7 @@ Two things to do to run to make this app work :
 
 # BACK (local server on the user laptop for the moment) :
 ## How to :
-pip install tex2py
+pip install tex2py <br>
 Coming soon...
 
 # FRONT :
