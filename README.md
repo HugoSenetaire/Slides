@@ -3,6 +3,7 @@ Two things to do to make this app work :
 # 1) BACK (local server on the user laptop for the moment) :
 ## How to :
 pip install tex2py <br>
+pip install Django==2.0.4 <br>
 Coming soon...
 
 # 2) FRONT :
