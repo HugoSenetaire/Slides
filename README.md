@@ -8,10 +8,10 @@ Coming soon...
 # FRONT :
 
 ## How to :
-cd generateur
-npm install (do it only once)
-npm install -g @angular/cli (do it only if angular cli is not installed)
-ng serve --open
+cd generateur <br>
+npm install (do it only once)<br>
+npm install -g @angular/cli (do it only if angular cli is not installed)<br>
+ng serve --open<br>
 Your app should be running
 
 ## Other downloads
