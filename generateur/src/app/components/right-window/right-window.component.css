@@ -1,0 +1,22 @@
+.header_right_window{
+  width: 100%;
+  /* border: 3px solid black; */
+  border-bottom: 2px solid gray;
+  padding: 0;
+  margin: 0;
+  height: 50px;
+  background-color: white;
+}
+
+.button_compile{
+  margin-left: 2.5px;
+  margin-top: 2.5px;
+  height: 45px;
+  background-color: rgb(215, 81, 99);
+  width: 150px;
+  font-size: 20px;
+  font-family: arial;
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+}

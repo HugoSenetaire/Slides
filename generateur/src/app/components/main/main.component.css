@@ -1,0 +1,20 @@
+.main{
+  padding-top: 0;
+  width: 99.8vw;
+  display: flex;
+  flex-direction: row;
+  height: 94.2vh;
+  border-top: 2px solid gray;
+}
+
+app-left-window{
+  width: 50%;
+  padding: 20px;
+  float:left;
+  overflow-y: auto;
+}
+
+app-right-window{
+  border-left: 2px solid gray;
+  width: 50%;
+}
