@@ -2,6 +2,11 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import os
 import sys
+sys.path.append('c:\\users\\matthieu\\documents\\ponts\\2a\\projet de département\\slides\\src')
+import wordCount
+import image
+import generator
+import extraction
 
 
 class MainWindow(QWidget):
@@ -56,7 +61,15 @@ class MainWindow(QWidget):
         optionsTab=QWidget()
         layoutOptionsTab=QGridLayout(optionsTab)
         self.generateImage=QCheckBox("Générer une image")
-        self.useMask=QCheckBox("Utiliser un masque préexistant")
+        self.useMask=QGroupBox("Utiliser un masque préexistant")
+        self.useMask.setCheckable(True)
+        self.useMask.setChecked(False)
+        maskLayout=QHBoxLayout(self.useMask)
+        self.maskPath=QLineEdit()
+        self.browseMask=QPushButton("Browse...")
+        maskLayout.addWidget(QLabel("Mask path : "))
+        maskLayout.addWidget(self.maskPath)
+        maskLayout.addWidget(self.browseMask)
         self.wordCloud=QCheckBox("Générer un word cloud")
         
         layoutOptionsTab.addWidget(self.generateImage)
@@ -72,6 +85,8 @@ class MainWindow(QWidget):
         
         self.connect(self.browseInput,SIGNAL("clicked()"),self.getInputPath)
         self.connect(self.browseOutput,SIGNAL("clicked()"),self.getOutputDir)
+        self.connect(self.browseMask,SIGNAL("clicked()"),self.getMaskPath)
+        self.connect(self.generateButton,SIGNAL("clicked()"),self.generateXML)
     
     def getInputPath(self):
         string=QFileDialog.getOpenFileName(self,"Open Source File", os.getcwd(),"Word Files (*.docx)")
@@ -82,10 +97,24 @@ class MainWindow(QWidget):
         string=QFileDialog.getExistingDirectory(self,"Chose folder", os.getcwd(),)
         if string!="":
             self.outputPath.setText(string)
-
+    
+    def getMaskPath(self):
+        string=QFileDialog.getOpenFileName(self,"Chose Mask", os.getcwd(),"Presentation Files (*.pptx)")
+        if string!="":
+            self.maskPath.setText(string)
+            
+    def generateXML(self):
+        extraction.xmlGeneration(self.inputPath.text().replace("/","\\"),self.outputPath.text().replace("/","\\")+"\\test.xml")
+        maskPath=""
+        if self.useMask.isChecked():
+            maskPath=self.maskPath.text().replace("/","\\")
+        generator.generatePresentation(self.outputPath.text().replace("/","\\")+"\\test.xml",maskPath)
 
 
 if __name__ == "__main__" :
    app=QApplication(sys.argv)
    fenetre=MainWindow(sys.argv)
+   fenetre.inputPath.setText("C:\\Users\\Matthieu\\Documents\\Ponts\\2A\\Projet de département\\Slides\\test\\test.docx")
+   fenetre.outputPath.setText("C:\\Users\\Matthieu\\Documents\\Ponts\\2A\\Projet de département\\Slides\\test")
+   fenetre.maskPath.setText("C:\\Users\\Matthieu\\Documents\\Ponts\\2A\\Projet de département\\Slides\\test\\test_mask.pptx")
    fenetre.show()
