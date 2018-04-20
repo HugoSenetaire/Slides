@@ -21,7 +21,8 @@ Angular --> https://angular.io/guide/quickstart <br>
 Django --> https://docs.djangoproject.com/en/2.0/intro/tutorial01/ <br>
 Tex2py --> https://github.com/alvinwan/tex2py <br>
 froala-editor --> https://github.com/froala/angular-froala-wysiwyg <br>
-angular-drag-and-drop-lists --> http://marceljuenemann.github.io/angular-drag-and-drop-lists/ <br>
+angular-drag-and-drop-lists --> http://marceljuenemann.github.io/angular-drag-and-drop-lists/ (for reference)<br>
+ngx-drag-drop --> https://github.com/reppners/ngx-drag-drop/
 
 
 
