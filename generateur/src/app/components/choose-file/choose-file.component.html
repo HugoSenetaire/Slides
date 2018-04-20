@@ -1,6 +1,8 @@
 <app-header></app-header>
 <h1>CHOIX DU FICHIER</h1>
 <div class="">
-  <input type="file" name="file" ngModel (change)="getFile($event)"> 
+  <input type="file" name="file" (change)="getFile($event)">
+  <button (click)="upload()">Upload your picture</button>
   <button routerLink="/parts">Next</button>
 </div>
+<!-- <img src="{}" alt=""> -->
