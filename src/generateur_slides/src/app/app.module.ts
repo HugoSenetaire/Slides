@@ -12,7 +12,12 @@ import { ChooseFileComponent, MyService } from './components/choose-file/choose-
 import { ChoosePartsComponent } from './components/choose-parts/choose-parts.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import {dndLists} from 'angular-drag-and-drop-lists'
+import { DndModule } from 'ngx-drag-drop';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatCardModule,MatIconModule} from "@angular/material";
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   {path:'', component:ChooseFileComponent},
@@ -36,9 +41,16 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule, 
     FroalaEditorModule.forRoot(), 
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    DndModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [MyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export class PizzaPartyAppModule { }
