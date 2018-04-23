@@ -6,11 +6,11 @@
 
 </ul> -->
 <div class="upload">
-	<h1>Choix du fichier...</h1>
+	<h1>Choose File...</h1>
 	<div class="browser">
 	  <label for="file" class="label-file">Browse</label>
 	  <input id="file" class="input-file" type="file" name="file" ngModel (change)="postFile($event)">
-		<p class="file-name" name="fileTitle" ngModel > {{fileTitle}}</p>
+		<p class="file-name" name="fileTitle" ngModel style="font-weight: bold"> {{fileTitle}}</p>
 	</div>
 	<div class="next">
 	  <button class="button" routerLink="/parts">Next</button>

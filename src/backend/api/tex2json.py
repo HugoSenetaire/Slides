@@ -4,7 +4,7 @@ import json
 def tex2json(doc):
     with open(doc) as f:
         data=f.read().replace("\n","<br>")
-        data=data.replace("\end{document}","\section{Poubelle} <br> \end{document}")
+        data=data.replace("\end{document}","\section{Trash} <br> \end{document}")
     # print(doc)
     # print(data)
     # data=doc.read().replace("\n","<br>")
@@ -16,20 +16,20 @@ def tex2json(doc):
         if isinstance(obj,TreeOfContents):
             if obj.depth==0:
                 #
-                return {"titre_latex":obj.name,"sections":list(map(serialiseur_perso,list(filter(lambda x: x.name!="Poubelle",list(obj.sections)))))}
+                return {"title_latex":obj.name,"sections":list(map(serialiseur_perso,list(filter(lambda x: x.name!="Trash",list(obj.sections)))))}
             if obj.depth==1:
                 if len(obj.descendants)>1:
-                    return {"titre":obj.name,"texte":obj.descendants[0] if isinstance(obj.descendants[0],str) else "","sous_parties":list(map(serialiseur_perso,list(obj.subsections)))}
+                    return {"title":obj.name,"text":obj.descendants[0] if isinstance(obj.descendants[0],str) else "","sub_sections":list(map(serialiseur_perso,list(obj.subsections)))}
                 else:
-                    return {"titre":obj.name,"texte":obj.descendants[0] if isinstance(obj.descendants,str) else "","sous_sous_parties":[],"texte":obj.descendants[0]}
+                    return {"title":obj.name,"text":obj.descendants[0] if isinstance(obj.descendants,str) else "","sub_sub_sections":[],"text":obj.descendants[0]}
             if obj.depth==2:
                 if len(obj.descendants)>1:
-                    return {"titre":obj.name,"texte":obj.descendants[0] if isinstance(obj.descendants[0],str) else "","sous_sous_parties":list(map(serialiseur_perso,list(obj.subsubsections)))}
+                    return {"title":obj.name,"text":obj.descendants[0] if isinstance(obj.descendants[0],str) else "","sub_sub_sections":list(map(serialiseur_perso,list(obj.subsubsections)))}
                 else:
-                    return {"titre":obj.name,"texte":obj.descendants[0] if isinstance(obj.descendants[0],str) else "","sous_sous_parties":[],"texte":obj.descendants[0]}
+                    return {"title":obj.name,"text":obj.descendants[0] if isinstance(obj.descendants[0],str) else "","sub_sub_sections":[],"text":obj.descendants[0]}
             if obj.depth==3:
-                return {"titre":obj.name,"texte":obj.descendants[0]}
-        raise TypeError(repr(obj) + " n'est pas sérialisable !")
+                return {"title":obj.name,"text":obj.descendants[0]}
+        raise TypeError(repr(obj) + " cannot be serialized !")
 
     # with open('Test.json','w',encoding='utf-8') as f:
     #     return json.dump(serialiseur_perso(tree),f,indent=4)
