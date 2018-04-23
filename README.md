@@ -1,4 +1,5 @@
 Two things to do to make this app work :
+**Everything is located in src/**
 
 # 1) BACK (local server on the user laptop for the moment) :
 ## How to :
@@ -6,6 +7,7 @@ pip install tex2py <br>
 pip install Django==2.0.4 <br>
 pip install djangorestframework <br>
 pip install django-cors-headers <br>
+Then cd src/backend and enter python manage.py runserver <br>
 Coming soon...
 
 # 2) FRONT :
@@ -13,7 +15,7 @@ Coming soon...
 cd generateur <br>
 npm install (do it only once)<br>
 npm install -g @angular/cli (do it only if angular cli is not installed)<br>
-ng serve --open<br>
+ng serve<br>
 Your app should be running
 
 # Technologies
