@@ -4,6 +4,8 @@ Two things to do to make this app work :
 ## How to :
 pip install tex2py <br>
 pip install Django==2.0.4 <br>
+pip install djangorestframework <br>
+pip install django-cors-headers <br>
 Coming soon...
 
 # 2) FRONT :
