@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../services/data/data.service';
 
 @Component({
   selector: 'app-choose-parts',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./choose-parts.component.css']
 })
 export class ChoosePartsComponent implements OnInit {
+  fileTitle : string;
+  id : number;
 
-  constructor() { }
+  constructor(private dataService: DataService) {
+    this.dataService.currentId.subscribe(id => this.id = id);
+    this.dataService.currentTitle.subscribe(title => this.fileTitle = title);
+  }
 
   ngOnInit() {
   }

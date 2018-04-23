@@ -16,6 +16,7 @@ import {dndLists} from 'angular-drag-and-drop-lists'
 
 // Services
 import { UploadService } from './services/upload/upload.service'
+import { DataService } from './services/data/data.service'
 
 const appRoutes: Routes = [
   {path:'', component:ChooseFileComponent},
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     FroalaViewModule.forRoot()
   ],
   providers: [
-    UploadService
+    UploadService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

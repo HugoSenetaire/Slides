@@ -6,10 +6,12 @@ import 'rxjs/add/operator/map';
 export class UploadService {
   url_latex : string = 'http://localhost:8000/api/latex_files/';
   url_json : string = 'http://localhost:8000/api/json_files/'
-  id : number = null;
-  
-  constructor(private http: HttpClient) { }
+  id : number;
 
+  constructor(private http: HttpClient) {
+
+  }
+  // This service only use is to upload latex files and to read them.
 
   postLatex(formData: FormData){
     return new Promise(
@@ -17,32 +19,12 @@ export class UploadService {
         this.http.post(this.url_latex, formData)
           .subscribe(
             data => {
-              (data as any).map(data => {
-                this.id = data.pk;
-              });
               console.log('success');
               resolve(data);
             },
             error => {
               console.log(error);
               reject(error);
-            }
-          );
-      }
-    );
-  }
-
-  getJson(id){
-    return new Promise(
-      (resolve, reject) => {
-        this.http.get(this.url_json + String(id))
-          .subscribe(
-            data => {
-              resolve(data);
-              // console.log(data);
-            },
-            error => {
-              console.log(error)
             }
           );
       }
@@ -65,15 +47,5 @@ export class UploadService {
     );
   }
 
-  storeId(id){
-    this.id = id;
-  }
 
-  getId(){
-    if (this.id != null){
-      return this.id
-    } else {
-      console.log("No file selected")
-    }
-  }
 }

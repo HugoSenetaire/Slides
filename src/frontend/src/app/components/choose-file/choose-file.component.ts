@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UploadService } from '../../services/upload/upload.service'
+import { UploadService } from '../../services/upload/upload.service';
+import { DataService } from '../../services/data/data.service';
 
 
 
@@ -11,12 +12,12 @@ import { UploadService } from '../../services/upload/upload.service'
 
 export class ChooseFileComponent implements OnInit {
   public file : File;
-  public id : number = 43;
+  public id : number;
 
   public fileTitle : string = 'No file chosen';
   public filesInfos : FileInfos[];
 
-  constructor(private uploadService: UploadService) {
+  constructor(public uploadService: UploadService, public dataService: DataService) {
     this.showLatex();
  }
 
@@ -36,9 +37,12 @@ export class ChooseFileComponent implements OnInit {
       formData.append('title', file.name);
       this.uploadService.postLatex(formData)
         .then(data => {
+          this.id = (data as any).pk;
           console.log('success', data);
           this.fileTitle = file.name;
           this.showLatex();
+          this.dataService.storeId(this.id);
+          this.dataService.storeTitle(this.fileTitle);
         })
         .catch(error => {
           console.log(error);
@@ -64,7 +68,13 @@ export class ChooseFileComponent implements OnInit {
 
   chooseOtherLatex($event){
     console.log(this.id);
-    this.uploadService.storeId(this.id);
+    this.dataService.storeId(this.id);
+    for(var i = 0; i<this.filesInfos.length; i++){
+      if(this.id == this.filesInfos[i].id){
+          this.fileTitle = this.filesInfos[i].title;
+      }
+    }
+    this.dataService.storeTitle(this.fileTitle);
   }
 
 

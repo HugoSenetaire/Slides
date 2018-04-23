@@ -115,6 +115,31 @@ button {
 }
 
 .file-choice{
+	width: 300px;
 	margin-top: 50px;
 	margin-left: 50px;
+}
+
+.file-choice a{
+	text-decoration: none;
+}
+
+.file-choice ul{
+	margin : 0;
+	padding : 0;
+}
+.file-choice li {
+	margin-left: 0;
+	list-style-type: none;
+	font-family: sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 12px;
+	height: 30px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	border: 2px solid rgb(07,154,208);
+	background-color: #1ce;
+	color: white;
+	border-radius: 4px;
 }
