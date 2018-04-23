@@ -10,11 +10,11 @@ import { UploadService } from '../../services/upload/upload.service'
 })
 
 export class ChooseFileComponent implements OnInit {
-  file : File;
-  id : number = null;
+  public file : File;
+  public id : number = null;
 
-  fileTitle : string = 'No file chosen';
-  filesInfos : FileInfos[];
+  public fileTitle : string = 'No file chosen';
+  public filesInfos : FileInfos[];
 
   constructor(private uploadService: UploadService) {
     this.showLatex();
@@ -24,10 +24,10 @@ export class ChooseFileComponent implements OnInit {
 
   }
 
-  getFile(event){
+  postFile(event){
+    //Here we post the latex file on the server AND we store in uploadService
+    // the id (primary key) of the latex file we just uploaded
     this.file = event.target.files;
-    console.log(this.file);
-    console.log(this.file.name);
 
     if (this.file != null){
       const file: File = this.file[0];
@@ -37,10 +37,7 @@ export class ChooseFileComponent implements OnInit {
       this.uploadService.postLatex(formData)
         .then(data => {
           console.log('success', data);
-          this.id = data.pk;
           this.fileTitle = file.name;
-          console.log(this.id);
-          this.uploadService.storeId(this.id);
           this.showLatex();
         })
         .catch(error => {
@@ -63,7 +60,7 @@ export class ChooseFileComponent implements OnInit {
   showLatex(){
     this.uploadService.getLatexFiles()
       .then(data => {
-        let length = data.length;
+        let length = (data as any).length;
         this.filesInfos = [];
         for(var i = 0; i<length; i++){
           let infos = new FileInfos(Number(data[i].pk), data[i].title);

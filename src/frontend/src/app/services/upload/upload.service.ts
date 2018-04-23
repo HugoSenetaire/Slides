@@ -16,6 +16,9 @@ export class UploadService {
         this.http.post(this.url_latex, formData)
           .subscribe(
             data => {
+              (data as any).map(data => {
+                this.id = data.pk;
+              });
               console.log('success');
               resolve(data);
             },

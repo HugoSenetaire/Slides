@@ -9,7 +9,7 @@
 	<h1>Choix du fichier...</h1>
 	<div class="browser">
 	  <label for="file" class="label-file">Browse</label>
-	  <input id="file" class="input-file" type="file" name="file" ngModel (change)="getFile($event)">
+	  <input id="file" class="input-file" type="file" name="file" ngModel (change)="postFile($event)">
 		<p class="file-name" name="fileTitle" ngModel > {{fileTitle}}</p>
 	</div>
 	<div class="next">
