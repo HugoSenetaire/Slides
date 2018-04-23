@@ -1,0 +1,6 @@
+<user>
+		<diapo layout="title"><title>THE SOLAR SYSTEM TEST </title></diapo>
+		<diapo layout="title+paragraph"><title>The Sun </title><paragraph>The sun is the star of our system. It is 4.9 GA old.<br/>Roughly 75% Hydrogene; 25% Helium.</paragraph></diapo>
+		<diapo layout="title+paragraph+image"><title>The Sun</title><image>image.jpg</image></diapo>
+		<diapo layout="title+figure+label"><title>The Sun</title><figure>75%</figure><label> of hydrogene</label></diapo>
+		<diapo layout="title+bullets"><title>The Planets</title><bullet level="0">Mercure</bullet><bullet level="0">Venus</bullet><bullet level="0">Uranus</bullet><bullet level="0">Jupiter</bullet></diapo></user>

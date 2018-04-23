@@ -1,6 +1,7 @@
 from lxml import etree
 from pptx import Presentation
 from pptx.util import Inches
+import os
 
 
 def getXmlTree(path):
@@ -33,6 +34,8 @@ def getSlideBullets(slide):
 
 
 def getPresentation(path):
+    if path=="":
+        return Presentation(os.path.realpath("../")+"\\test\\blank.pptx")
     return Presentation(path)
 
 

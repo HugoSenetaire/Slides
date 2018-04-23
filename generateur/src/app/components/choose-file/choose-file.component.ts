@@ -24,22 +24,20 @@ export class ChooseFileComponent implements OnInit {
   getFile(event){
       this.file = event.target.files;
       console.log(this.file);
-  }
 
-  upload(){
-    if (this.file != null){
-      const file: File = this.file[0];
-      const formData: FormData = new FormData();
-      formData.append('latex', file);
-      console.log(file);
-      this.uploadService.postLatex(formData)
-        .then(data => {
-          console.log('success', data);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+      if (this.file != null){
+        const file: File = this.file[0];
+        const formData: FormData = new FormData();
+        formData.append('latex', file);
+        console.log(file);
+        this.uploadService.postLatex(formData)
+          .then(data => {
+            console.log('success', data);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
   }
 
 

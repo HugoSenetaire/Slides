@@ -1,0 +1,56 @@
+{
+    "titre_latex": "[document]",
+    "sections": [
+        {
+            "titre": "Partie1",
+            "texte": "<br>ti1<br>",
+            "sous_parties": [
+                {
+                    "titre": "SP1",
+                    "texte": "<br>t11<br>",
+                    "sous_sous_parties": [
+                        {
+                            "titre": "SSP1",
+                            "texte": "<br>t111<br>"
+                        },
+                        {
+                            "titre": "SSP2",
+                            "texte": "<br>t112<br><br>"
+                        }
+                    ]
+                },
+                {
+                    "titre": "SP2",
+                    "texte": "<br>t12<br><br>",
+                    "sous_sous_parties": []
+                },
+                {
+                    "titre": "SP3",
+                    "texte": "<br>t13<br><br>",
+                    "sous_sous_parties": []
+                }
+            ]
+        },
+        {
+            "titre": "Partie2",
+            "texte": "<br>ti2<br>",
+            "sous_parties": [
+                {
+                    "titre": "SP1",
+                    "texte": "<br>t21<br><br>",
+                    "sous_sous_parties": []
+                },
+                {
+                    "titre": "SP2",
+                    "texte": "<br>t22<br><br>",
+                    "sous_sous_parties": []
+                }
+            ]
+        },
+        {
+            "titre": "Conclusion",
+            "texte": "<br>tf<br><br><br>",
+            "sous_sous_parties": []
+        }
+    ]
+}
