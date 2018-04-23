@@ -4,6 +4,7 @@ from datetime import datetime
 
 class LatexFile(models.Model):
     latex = models.FileField('Uploaded Latex File') #stores the uploaded latex file
-    created_ar = models.DateTimeField(default=datetime.now, blank=True)
-    def str(self):
+    title = models.CharField(max_length=200, default = 'whatever')
+    created_at = models.DateTimeField(default=datetime.now, blank=True)
+    def __str__(self):
         return self.latex.name

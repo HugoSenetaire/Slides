@@ -113,3 +113,8 @@ button {
     cursor: pointer;
     border:2px solid rgb(37,184,238);
 }
+
+.file-choice{
+	margin-top: 50px;
+	margin-left: 50px;
+}

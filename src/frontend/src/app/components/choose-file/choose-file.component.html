@@ -6,14 +6,24 @@
 
 </ul> -->
 <div class="upload">
-	<h1>Choix du fichier</h1>
+	<h1>Choix du fichier...</h1>
 	<div class="browser">
 	  <label for="file" class="label-file">Browse</label>
 	  <input id="file" class="input-file" type="file" name="file" ngModel (change)="getFile($event)">
+		<p class="file-name" name="fileTitle" ngModel > {{fileTitle}}</p>
 	</div>
 	<div class="next">
 	  <button class="button" routerLink="/parts">Next</button>
 	</div>
 </div>
-<button type="button" name="button" (click)="whatever()">Clique ICICICIICICIIC</button>
-<button type="button" name="button" (click)="oui()">GET CURRENT ID</button>
+<!-- <button (click)="showLatex()">VOIR LES LATEX</button> -->
+<div class="file-choice">
+<p>... Or choose a file you already uploaded :</p>
+	<ul>
+  <li *ngFor="let fileInfos of filesInfos">
+	 <a href="/parts">{{ fileInfos.title }}</a>
+ </li>
+</ul>
+</div>
+<!-- <button type="button" name="button" (click)="whatever()">Clique ICICICIICICIIC</button> -->
+<!-- <button type="button" name="button" (click)="oui()">GET CURRENT ID</button> -->
