@@ -6,11 +6,15 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class DataService {
   url_json : string = 'http://localhost:8000/api/json_files/'
+
   idSource = new BehaviorSubject<number>(null);
   currentId = this.idSource.asObservable();
 
   titleSource = new BehaviorSubject<string>('No File Selected');
   currentTitle = this.titleSource.asObservable();
+
+  // documentSource = new BehaviorSubject<any>('Samer');
+  // currentDocument = this.documentSource.asObservable();
 
   constructor(private http: HttpClient) { }
   //This service is used to store the primary key of the latex file we are working on
@@ -40,11 +44,18 @@ export class DataService {
 
   storeId(id: number){
     this.idSource.next(id);
+    console.log("Document'id successfully saved")
   }
 
   storeTitle(title: string){
     this.titleSource.next(title);
+    console.log("Document's title successfully saved")
   }
+
+  // storeDocument(document: any){
+  //   this.documentSource.next(document);
+  //   console.log("Document successfully saved")
+  // }
 
   // In order to get the id :
   // In the component : this.dataService.currentId.subsrcribe(id => this.id = id)

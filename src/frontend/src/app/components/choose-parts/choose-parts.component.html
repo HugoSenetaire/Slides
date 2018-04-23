@@ -5,8 +5,23 @@
 	<li> <a routerLink="/main"> WorkSpace </a> </li>
 
 </ul> -->
-<h1>CHOIX DES PARTIES</h1>
-<h2>You are working on the following file : {{fileTitle}}</h2>
-<button routerLink="/main">Next</button>
+<div class="main-window">
+  <h1>Choose what you want parts to keep...</h1>
+  <p>You are working on the following file : <b>{{fileTitle}}</b></p>
+  <div class="tree">
+    <ul *ngFor='let section of userDocument.sections'>
+      <li>{{section.title}}</li>
+      <ul *ngFor="let sub_section of section.sub_sections">
+        <li>{{sub_section.title}}</li>
+        <ul *ngFor="let sub_sub_section of sub_section.sub_sub_sections">
+          <li>{{sub_sub_section.title}}</li>
+        </ul>
+      </ul>
+    </ul>
+  </div>
+  <div class="next">
+    <button routerLink="/main" class="button">Next</button>
+  </div>
+</div>
 
-<button (click)="oui()">CLIQUE LE JSON</button>
+<!-- <button (click)="oui()">CLIQUE LE JSON</button> -->

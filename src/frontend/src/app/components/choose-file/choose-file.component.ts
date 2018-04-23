@@ -17,6 +17,8 @@ export class ChooseFileComponent implements OnInit {
   public fileTitle : string = 'No file chosen';
   public filesInfos : FileInfos[];
 
+  // userDocument: any;
+
   constructor(public uploadService: UploadService, public dataService: DataService) {
     this.showLatex();
  }
@@ -59,16 +61,18 @@ export class ChooseFileComponent implements OnInit {
           let infos = new FileInfos(Number(data[i].pk), data[i].title);
           this.filesInfos.push(infos);
         }
-        console.log(this.filesInfos);
       })
       .catch(error => {
         console.log(error);
       })
   }
 
+
+
   chooseOtherLatex($event){
-    console.log(this.id);
+    // this.json2us();
     this.dataService.storeId(this.id);
+    // this.dataService.storeDocument(this.userDocument);
     for(var i = 0; i<this.filesInfos.length; i++){
       if(this.id == this.filesInfos[i].id){
           this.fileTitle = this.filesInfos[i].title;

@@ -12,44 +12,21 @@ export class ChoosePartsComponent implements OnInit {
   userDocument: document;
 
   constructor(private dataService: DataService) {
-    this.dataService.currentId.subscribe(id => this.id = id);
-    this.dataService.currentTitle.subscribe(title => this.fileTitle = title);
-    this.userDocument = new document();
-    console.log(this.fileTitle);
-    this.json2us();
+
   }
 
   ngOnInit() {
+    this.dataService.currentId.subscribe(id => this.id = id);
+    this.dataService.currentTitle.subscribe(title => this.fileTitle = title);
+    this.userDocument = new document();
+    this.json2us();
   }
 
   json2us(){
-    this.dataService.getJson(17)
+    this.dataService.getJson(20) //Change this to this.id
       .then(data => {
-        console.log(data);
+        this.userDocument = (data as any);
         this.userDocument.title = this.fileTitle;
-        let nbr_sections = (data as any).sections.length;
-        for(var i=0; i<nbr_sections; i++){
-          let _section = new section();
-          _section.title = (data as any).sections[i].title;
-          _section.text = (data as any).sections[i].text;
-          let nbr_sub_sections = (data as any).sections[i].sub_sections.length;
-          for(var j=0; j<nbr_sub_sections; j++){
-            let _sub_section = new sub_section();
-            _sub_section.title = (data as any).sections[i].sub_sections[j].title;
-            _sub_section.text = (data as any).sections[i].sub_sections[j].text;
-            let nbr_sub_sub_sections = (data as any).sections[i].sub_sections.length;
-            for(var k=0; k<nbr_sub_sub_sections; k++){
-              let _sub_sub_section = new sub_sub_section();
-              _sub_sub_section.title = (data as any).sections[i].sub_sections[j].sub_sub_sections[k].title;
-              _sub_sub_section.text = (data as any).sections[i].sub_sections[j].sub_sub_sections[k].text;
-              this.userDocument.sections[i].sub_sections[j].sub_sub_sections.push(_sub_sub_section);
-            }
-            this.userDocument.sections[i].sub_sections.push(_sub_section);
-          }
-
-          this.userDocument.sections.push(_section);
-        }
-        console.log(this.userDocument);
       })
       .catch(error => {
         console.log(error);
@@ -77,6 +54,7 @@ class sub_section {
   constructor(){
     this.title = "";
     this.text="";
+    this.sub_sub_sections = [];
   }
 }
 
@@ -87,6 +65,7 @@ class section {
   constructor(){
     this.title = "";
     this.text="";
+    this.sub_sections = [];
   }
 }
 
@@ -95,8 +74,51 @@ class document {
   sections: section[];
   constructor(){
     this.title = "";
+    this.sections = [];
   }
 }
+
+// Other version of json2us (useless) :
+// this.userDocument.title = this.fileTitle;
+// this.dataService.getJson(this.id)
+//   .then(data => {
+//     // console.log(data);
+//     let nbr_sections = (data as any).sections.length;
+//     if (nbr_sections>0){
+//       for(var i=0; i<nbr_sections; i++){
+//         let _section = new section();
+//         this.userDocument.sections.push(_section);
+//         _section.title = (data as any).sections[i].title;
+//         _section.text = (data as any).sections[i].text;
+//         let nbr_sub_sections = (data as any).sections[i].sub_sections.length;
+//         if (nbr_sub_sections>0){
+//           for(var j=0; j<nbr_sub_sections; j++){
+//             let _sub_section = new sub_section();
+//             this.userDocument.sections[i].sub_sections.push(_sub_section);
+//             _sub_section.title = (data as any).sections[i].sub_sections[j].title;
+//             _sub_section.text = (data as any).sections[i].sub_sections[j].text;
+//             let nbr_sub_sub_sections = (data as any).sections[i].sub_sections[j].sub_sub_sections.length;
+//             if (nbr_sub_sub_sections>0){
+//               for(var k=0; k<nbr_sub_sub_sections; k++){
+//                 let _sub_sub_section = new sub_sub_section();
+//                 _sub_sub_section.title = (data as any).sections[i].sub_sections[j].sub_sub_sections[k].title;
+//                 _sub_sub_section.text = (data as any).sections[i].sub_sections[j].sub_sub_sections[k].text;
+//                 this.userDocument.sections[i].sub_sections[j].sub_sub_sections.push(_sub_sub_section);
+//               }
+//             }
+//             this.userDocument.sections[i].sub_sections[j] = _sub_section;
+//           }
+//
+//         }
+//
+//         this.userDocument.sections[i] = _section;
+//
+//       }
+//     }
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   })
 
 
 
