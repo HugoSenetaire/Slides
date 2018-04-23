@@ -11,7 +11,7 @@ import { UploadService } from '../../services/upload/upload.service'
 
 export class ChooseFileComponent implements OnInit {
   public file : File;
-  public id : number = null;
+  public id : number = 43;
 
   public fileTitle : string = 'No file chosen';
   public filesInfos : FileInfos[];
@@ -46,17 +46,6 @@ export class ChooseFileComponent implements OnInit {
     }
   }
 
-  // whatever(){
-  //   this.uploadService.getJson()
-  //     .then(data => {
-  //       console.log(data);
-  //     });
-  // }
-
-  oui(){
-    console.log(this.uploadService.getId());
-  }
-
   showLatex(){
     this.uploadService.getLatexFiles()
       .then(data => {
@@ -71,6 +60,11 @@ export class ChooseFileComponent implements OnInit {
       .catch(error => {
         console.log(error);
       })
+  }
+
+  chooseOtherLatex($event){
+    console.log(this.id);
+    this.uploadService.storeId(this.id);
   }
 
 

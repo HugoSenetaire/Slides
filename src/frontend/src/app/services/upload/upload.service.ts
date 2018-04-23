@@ -7,6 +7,7 @@ export class UploadService {
   url_latex : string = 'http://localhost:8000/api/latex_files/';
   url_json : string = 'http://localhost:8000/api/json_files/'
   id : number = null;
+  
   constructor(private http: HttpClient) { }
 
 
@@ -72,7 +73,7 @@ export class UploadService {
     if (this.id != null){
       return this.id
     } else {
-      console.log("No tex")
+      console.log("No file selected")
     }
   }
 }

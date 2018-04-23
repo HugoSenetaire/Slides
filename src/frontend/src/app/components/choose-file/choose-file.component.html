@@ -16,14 +16,13 @@
 	  <button class="button" routerLink="/parts">Next</button>
 	</div>
 </div>
-<!-- <button (click)="showLatex()">VOIR LES LATEX</button> -->
 <div class="file-choice">
 <p>... Or choose a file you already uploaded :</p>
 	<ul>
-  <li *ngFor="let fileInfos of filesInfos">
-	 <a href="/parts">{{ fileInfos.title }}</a>
- </li>
+  <a href="/parts">
+		<li *ngFor="let fileInfos of filesInfos" [(value)]="fileInfos.id" (click)="id = $event.target.value; chooseOtherLatex()">
+			{{ fileInfos.title }}
+		</li>
+	</a>
 </ul>
 </div>
-<!-- <button type="button" name="button" (click)="whatever()">Clique ICICICIICICIIC</button> -->
-<!-- <button type="button" name="button" (click)="oui()">GET CURRENT ID</button> -->
