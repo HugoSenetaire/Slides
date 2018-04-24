@@ -154,8 +154,7 @@ export class ChoosePartsComponent {
 
   confirmParts(){
     this.showNext = true;
-
-    
+    this.dataService.storeDocument(this.userDocument);
   }
 
   us2json(){

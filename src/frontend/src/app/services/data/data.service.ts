@@ -13,6 +13,9 @@ export class DataService {
   titleSource = new BehaviorSubject<string>('No File Selected');
   currentTitle = this.titleSource.asObservable();
 
+  documentSource = new BehaviorSubject<document>(null);
+  currentDocument = this.documentSource.asObservable();
+
   // documentSource = new BehaviorSubject<any>('Samer');
   // currentDocument = this.documentSource.asObservable();
 
@@ -44,12 +47,17 @@ export class DataService {
 
   storeId(id: number){
     this.idSource.next(id);
-    console.log("Document'id successfully saved")
+    console.log("Document'id successfully saved");
   }
 
   storeTitle(title: string){
     this.titleSource.next(title);
-    console.log("Document's title successfully saved")
+    console.log("Document's title successfully saved");
+  }
+
+  storeDocument(doc: document){
+    this.documentSource.next(doc);
+    console.log("Document successfully saved");
   }
 
   // storeDocument(document: any){
@@ -60,4 +68,57 @@ export class DataService {
   // In order to get the id :
   // In the component : this.dataService.currentId.subsrcribe(id => this.id = id)
 
+}
+
+
+class sub_sub_section {
+  title: string;
+  text: string;
+  isChecked : boolean;
+  type : string;
+  constructor(){
+    this.title = "";
+    this.text="";
+    this.isChecked = false;
+    this.type = "sub_sub_section";
+  }
+}
+
+class sub_section {
+  title: string;
+  text: string;
+  isChecked : boolean;
+  type : string;
+  sub_sub_sections: sub_sub_section[];
+  constructor(){
+    this.title = "";
+    this.text="";
+    this.isChecked = false;
+    this.sub_sub_sections = [];
+    this.type = "sub_section";
+  }
+}
+
+class section {
+  title: string;
+  text: string;
+  isChecked : boolean;
+  type : string;
+  sub_sections: sub_section[];
+  constructor(){
+    this.title = "";
+    this.text="";
+    this.isChecked = false;
+    this.sub_sections = [];
+    this.type = "section";
+  }
+}
+
+class document {
+  title: string;
+  sections: section[];
+  constructor(){
+    this.title = "";
+    this.sections = [];
+  }
 }
