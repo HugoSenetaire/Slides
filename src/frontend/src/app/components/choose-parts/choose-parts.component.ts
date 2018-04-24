@@ -4,13 +4,13 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { DataService } from '../../services/data/data.service';
 
 
-interface NestableListItem {
-  content:string;
-  disable?:boolean;
-  handle?:boolean;
-  customDragImage?:boolean;
-  children?:NestableListItem[];
-}
+// interface NestableListItem {
+//   content:string;
+//   disable?:boolean;
+//   handle?:boolean;
+//   customDragImage?:boolean;
+//   children?:NestableListItem[];
+// }
 
 @Component({
   selector: 'app-choose-parts',
@@ -22,44 +22,50 @@ interface NestableListItem {
 export class ChoosePartsComponent {
   fileTitle : string;
   id : number;
-  userDocument : any;
+  userDocument : document;
 
-  nestableList:NestableListItem[] = [
-    {
-      content: "Partie1",
-      children: [
-        {
-          content: "Sous partie 1",
-          customDragImage: true
-        }
-      ]
-    },
-    {
-      content: "Partie 2 (on peut pas mettre de sous parties ici)"
-    },
-    {
-      content: "Partie 3",
-      children: [
-        {
-          content: "Sous partie 1",
-          handle: true
-        },
-        {
-          content: "Sous Partie 2"
-        },
-        {
-          content: "Sous Partie 3"
-        }
-      ]
-    },
-    {
-      content: "Partie 4",
-      children: []
-    }
-  ];
+  i_s : number = null;
+  j_ss : number = null;
+  k_sss : number = null;
 
-  private currentDraggableEvent:DragEvent;
-  private currentDragEffectMsg:string;
+  showNext : boolean = false;
+
+  // nestableList : NestableListItem[] = [
+  //   {
+  //     content: "Partie1",
+  //     children: [
+  //       {
+  //         content: "Sous partie 1",
+  //         customDragImage: true
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     content: "Partie 2 (on peut pas mettre de sous parties ici)"
+  //   },
+  //   {
+  //     content: "Partie 3",
+  //     children: [
+  //       {
+  //         content: "Sous partie 1",
+  //         handle: true
+  //       },
+  //       {
+  //         content: "Sous Partie 2"
+  //       },
+  //       {
+  //         content: "Sous Partie 3"
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     content: "Partie 4",
+  //     children: []
+  //   }
+  // ];
+
+  // private currentDraggableEvent:DragEvent;
+  // private currentDragEffectMsg:string;
 
   constructor( private snackBarService:MatSnackBar, private dataService: DataService ) {
   }
@@ -69,14 +75,29 @@ export class ChoosePartsComponent {
     this.dataService.currentTitle.subscribe(title => this.fileTitle = title);
     // this.userDocument = new document();
     this.json2us();
-    console.log(this.userDocument)
   }
 
   json2us(){
+    //This function initialises the json doc received to better use it for html
+    this.userDocument = new document();
     this.dataService.getJson(20) //Change this to this.id
       .then(data => {
-        this.userDocument = (data as any);
-        this.userDocument.title_latex = this.fileTitle;
+        this.userDocument.sections = (data as document).sections;
+        this.userDocument.title = this.fileTitle;
+        for(var i = 0; i< this.userDocument.sections.length; i++){
+          this.userDocument.sections[i].isChecked = false;
+          this.userDocument.sections[i].type = "section";
+          for(var j = 0; j< this.userDocument.sections[i].sub_sections.length; j++){
+            this.userDocument.sections[i].sub_sections[j].isChecked = false;
+            this.userDocument.sections[i].sub_sections[j].type = "sub_section";
+            for(var k = 0; k< this.userDocument.sections[i].sub_sections[j].sub_sub_sections.length; k++){
+              this.userDocument.sections[i].sub_sections[j].sub_sub_sections[k].isChecked = false;
+              this.userDocument.sections[i].sub_sections[j].sub_sub_sections[k].type = "sub_sub_section";
+            }
+
+          }
+
+        }
         console.log(this.userDocument);
       })
       .catch(error => {
@@ -84,96 +105,161 @@ export class ChoosePartsComponent {
       })
   }
 
+  check_s(){
+    this.userDocument.sections[this.i_s].isChecked = !this.userDocument.sections[this.i_s].isChecked;
+    let isChecked = this.userDocument.sections[this.i_s].isChecked;
+    if(!isChecked){
+      for(var j = 0; j<this.userDocument.sections[this.i_s].sub_sections.length; j++){
+        this.userDocument.sections[this.i_s].sub_sections[j].isChecked = false;
+        for(var k = 0; k<this.userDocument.sections[this.i_s].sub_sections[j].sub_sub_sections.length; k++){
+          this.userDocument.sections[this.i_s].sub_sections[j].sub_sub_sections[k].isChecked = false;
+        }
+
+      }
+    }
+    if(isChecked){
+      for(var j = 0; j<this.userDocument.sections[this.i_s].sub_sections.length; j++){
+        this.userDocument.sections[this.i_s].sub_sections[j].isChecked = true;
+        for(var k = 0; k<this.userDocument.sections[this.i_s].sub_sections[j].sub_sub_sections.length; k++){
+          this.userDocument.sections[this.i_s].sub_sections[j].sub_sub_sections[k].isChecked = true;
+        }
+      }
+    }
+  }
+
+  check_ss(){
+    this.userDocument.sections[this.i_s].sub_sections[this.j_ss].isChecked = !this.userDocument.sections[this.i_s].sub_sections[this.j_ss].isChecked;
+    let isChecked = this.userDocument.sections[this.i_s].sub_sections[this.j_ss].isChecked;
+    if(!isChecked){
+      for(var i = 0; i<this.userDocument.sections[this.i_s].sub_sections[this.j_ss].sub_sub_sections.length; i++){
+        this.userDocument.sections[this.i_s].sub_sections[this.j_ss].sub_sub_sections[i].isChecked = false;
+      }
+    }
+    if(isChecked){
+      this.userDocument.sections[this.i_s].isChecked = true;
+      for(var i = 0; i<this.userDocument.sections[this.i_s].sub_sections[this.j_ss].sub_sub_sections.length; i++){
+        this.userDocument.sections[this.i_s].sub_sections[this.j_ss].sub_sub_sections[i].isChecked = true;
+      }
+    }
+  }
+
+  check_sss(){
+    this.userDocument.sections[this.i_s].sub_sections[this.j_ss].sub_sub_sections[this.k_sss].isChecked = !this.userDocument.sections[this.i_s].sub_sections[this.j_ss].sub_sub_sections[this.k_sss].isChecked
+    let isChecked = this.userDocument.sections[this.i_s].sub_sections[this.j_ss].sub_sub_sections[this.k_sss].isChecked;
+    if(isChecked){
+      this.userDocument.sections[this.i_s].sub_sections[this.j_ss].isChecked = true;
+      this.userDocument.sections[this.i_s].isChecked = true;
+    }
+  }
+
+  confirmParts(){
+    this.showNext = true;
+
+    
+  }
+
   us2json(){
 
   }
 
-  onDragStart( event:DragEvent ) {
+  // onDragStart( event:DragEvent ) {
+  //
+  //   this.currentDragEffectMsg = "";
+  //   this.currentDraggableEvent = event;
+  //
+  //   this.snackBarService.dismiss();
+  //   this.snackBarService.open( "Drag started!", undefined, {duration: 2000} );
+  // }
 
-    this.currentDragEffectMsg = "";
-    this.currentDraggableEvent = event;
+  // onDragged( item:any, list:any[], effect:DropEffect ) {
+  //
+  //   this.currentDragEffectMsg = `Drag ended with effect "${effect}"!`;
+  //
+  //   if( effect === "move" ) {
+  //
+  //     const index = list.indexOf( item );
+  //     list.splice( index, 1 );
+  //   }
+  // }
 
-    this.snackBarService.dismiss();
-    this.snackBarService.open( "Drag started!", undefined, {duration: 2000} );
-  }
+  // onDragEnd( event:DragEvent ) {
+  //
+  //   this.currentDraggableEvent = event;
+  //   this.snackBarService.dismiss();
+  //   this.snackBarService.open( this.currentDragEffectMsg || `Drag ended!`, undefined, {duration: 2000} );
+  // }
 
-  onDragged( item:any, list:any[], effect:DropEffect ) {
-
-    this.currentDragEffectMsg = `Drag ended with effect "${effect}"!`;
-
-    if( effect === "move" ) {
-
-      const index = list.indexOf( item );
-      list.splice( index, 1 );
-    }
-  }
-
-  onDragEnd( event:DragEvent ) {
-
-    this.currentDraggableEvent = event;
-    this.snackBarService.dismiss();
-    this.snackBarService.open( this.currentDragEffectMsg || `Drag ended!`, undefined, {duration: 2000} );
-  }
-
-  onDrop( event:DndDropEvent, list?:any[] ) {
-
-    if( list
-      && (event.dropEffect === "copy"
-        || event.dropEffect === "move") ) {
-
-      let index = event.index;
-
-      if( typeof index === "undefined" ) {
-
-        index = list.length;
-      }
-
-      list.splice( index, 0, event.data );
-    }
-  }
+  // onDrop( event:DndDropEvent, list?:any[] ) {
+  //
+  //   if( list
+  //     && (event.dropEffect === "copy"
+  //       || event.dropEffect === "move") ) {
+  //
+  //     let index = event.index;
+  //
+  //     if( typeof index === "undefined" ) {
+  //
+  //       index = list.length;
+  //     }
+  //
+  //     list.splice( index, 0, event.data );
+  //   }
+  // }
 }
 
 
 
-// class sub_sub_section {
-//   title: string;
-//   text: string;
-//   constructor(){
-//     this.title = "";
-//     this.text="";
-//   }
-// }
-//
-// class sub_section {
-//   title: string;
-//   text: string;
-//   sub_sub_sections: sub_sub_section[];
-//   constructor(){
-//     this.title = "";
-//     this.text="";
-//     this.sub_sub_sections = [];
-//   }
-// }
-//
-// class section {
-//   title: string;
-//   text: string;
-//   sub_sections: sub_section[];
-//   constructor(){
-//     this.title = "";
-//     this.text="";
-//     this.sub_sections = [];
-//   }
-// }
-//
-// class document {
-//   title: string;
-//   sections: section[];
-//   constructor(){
-//     this.title = "";
-//     this.sections = [];
-//   }
-// }
+class sub_sub_section {
+  title: string;
+  text: string;
+  isChecked : boolean;
+  type : string;
+  constructor(){
+    this.title = "";
+    this.text="";
+    this.isChecked = false;
+    this.type = "sub_sub_section";
+  }
+}
+
+class sub_section {
+  title: string;
+  text: string;
+  isChecked : boolean;
+  type : string;
+  sub_sub_sections: sub_sub_section[];
+  constructor(){
+    this.title = "";
+    this.text="";
+    this.isChecked = false;
+    this.sub_sub_sections = [];
+    this.type = "sub_section";
+  }
+}
+
+class section {
+  title: string;
+  text: string;
+  isChecked : boolean;
+  type : string;
+  sub_sections: sub_section[];
+  constructor(){
+    this.title = "";
+    this.text="";
+    this.isChecked = false;
+    this.sub_sections = [];
+    this.type = "section";
+  }
+}
+
+class document {
+  title: string;
+  sections: section[];
+  constructor(){
+    this.title = "";
+    this.sections = [];
+  }
+}
 
 // Other version of json2us (useless) :
 // this.userDocument.title = this.fileTitle;

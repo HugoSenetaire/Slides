@@ -1,11 +1,45 @@
 <app-header></app-header>
-<!-- <ul> 
+<!-- <ul>
 	<li> <a routerLink="/"> Browse </a> </li>
 	<li><a routerLink="/parts"> Structure </a></li>
 	<li> <a routerLink="/main"> WorkSpace </a> </li>
 
 </ul> -->
-<div class="layout-padding">
+
+
+<div class="main-window">
+  <h1>Choose what parts you want to keep...</h1>
+  <p>You are working on the following file : <b>{{fileTitle}}</b></p>
+  <form class="tree">
+    <ul *ngFor='let section of userDocument.sections; let i = index'>
+      <li>
+        <input type="checkbox" name="section" [(checked)]="section.isChecked" (click)="i_s = i; check_s()">
+        <b class="sections">{{i+1}}) {{section.title}}</b>
+      </li>
+
+      <ul *ngFor="let sub_section of section.sub_sections; let j = index">
+        <li>
+          <input type="checkbox" name="" [(checked)]="sub_section.isChecked" (click)="i_s = i; j_ss = j; check_ss()">
+           <b class="sub_sections">{{i+1}}.{{j+1}}) {{sub_section.title}}</b>
+         </li>
+
+        <ul *ngFor="let sub_sub_section of sub_section.sub_sub_sections; let k = index">
+          <li>
+            <input type="checkbox" name="" [(checked)]="sub_sub_section.isChecked" (click)="i_s = i; j_ss = j; k_sss = k; check_sss()">
+             <b class="sub_sub_sections">{{i+1}}.{{j+1}}.{{k+1}}) {{sub_sub_section.title}}</b>
+           </li>
+
+        </ul>
+      </ul>
+    </ul>
+  </form>
+  <button class="button-confirm" (click)="confirmParts()">Confirm</button>
+  <div class="next" *ngIf="showNext">
+    <button routerLink="/main" class="button-next">Next</button>
+  </div>
+</div>
+
+<!-- <div class="layout-padding">
 
   <ng-template #recursiveList
                let-list>
@@ -58,4 +92,4 @@
   </div>
 
 </div>
-<button routerLink="/main">Next</button>
+<button routerLink="/main">Next</button> -->
