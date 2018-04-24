@@ -1,4 +1,4 @@
-/* h1{
+h1{
   color:#1ce;
 	text-align: left;
 	font-family: sans-serif;
@@ -14,7 +14,7 @@
   height: 80%;
   margin: auto auto;
   margin-top: 2%;
-  /* text-align: center; */
+  /* text-align: center;
   box-sizing: content-box;
   border: 2px solid black;
   border-radius: 5px;

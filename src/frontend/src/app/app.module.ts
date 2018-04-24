@@ -12,7 +12,7 @@ import { ChooseFileComponent} from './components/choose-file/choose-file.compone
 import { ChoosePartsComponent } from './components/choose-parts/choose-parts.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import {dndLists} from 'angular-drag-and-drop-lists',
+import {dndLists} from 'angular-drag-and-drop-lists';
 
 // Services
 import { UploadService } from './services/upload/upload.service'
