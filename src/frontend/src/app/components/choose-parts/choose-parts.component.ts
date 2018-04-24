@@ -7,76 +7,76 @@ import { DataService } from '../../services/data/data.service';
   styleUrls: ['./choose-parts.component.css']
 })
 export class ChoosePartsComponent implements OnInit {
-  fileTitle : string;
-  id : number;
-  userDocument: document;
+  // fileTitle : string;
+  // id : number;
+  // userDocument: document;
 
   constructor(private dataService: DataService) {
 
   }
 
   ngOnInit() {
-    this.dataService.currentId.subscribe(id => this.id = id);
-    this.dataService.currentTitle.subscribe(title => this.fileTitle = title);
-    this.userDocument = new document();
-    this.json2us();
+    // this.dataService.currentId.subscribe(id => this.id = id);
+    // this.dataService.currentTitle.subscribe(title => this.fileTitle = title);
+    // this.userDocument = new document();
+    // this.json2us();
   }
 
-  json2us(){
-    this.dataService.getJson(20) //Change this to this.id
-      .then(data => {
-        this.userDocument = (data as any);
-        this.userDocument.title = this.fileTitle;
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }
-
-  us2json(){
-
-  }
+  // json2us(){
+  //   this.dataService.getJson(20) //Change this to this.id
+  //     .then(data => {
+  //       this.userDocument = (data as any);
+  //       this.userDocument.title = this.fileTitle;
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     })
+  // }
+  //
+  // us2json(){
+  //
+  // }
 }
 
-class sub_sub_section {
-  title: string;
-  text: string;
-  constructor(){
-    this.title = "";
-    this.text="";
-  }
-}
-
-class sub_section {
-  title: string;
-  text: string;
-  sub_sub_sections: sub_sub_section[];
-  constructor(){
-    this.title = "";
-    this.text="";
-    this.sub_sub_sections = [];
-  }
-}
-
-class section {
-  title: string;
-  text: string;
-  sub_sections: sub_section[];
-  constructor(){
-    this.title = "";
-    this.text="";
-    this.sub_sections = [];
-  }
-}
-
-class document {
-  title: string;
-  sections: section[];
-  constructor(){
-    this.title = "";
-    this.sections = [];
-  }
-}
+// class sub_sub_section {
+//   title: string;
+//   text: string;
+//   constructor(){
+//     this.title = "";
+//     this.text="";
+//   }
+// }
+//
+// class sub_section {
+//   title: string;
+//   text: string;
+//   sub_sub_sections: sub_sub_section[];
+//   constructor(){
+//     this.title = "";
+//     this.text="";
+//     this.sub_sub_sections = [];
+//   }
+// }
+//
+// class section {
+//   title: string;
+//   text: string;
+//   sub_sections: sub_section[];
+//   constructor(){
+//     this.title = "";
+//     this.text="";
+//     this.sub_sections = [];
+//   }
+// }
+//
+// class document {
+//   title: string;
+//   sections: section[];
+//   constructor(){
+//     this.title = "";
+//     this.sections = [];
+//   }
+// }
 
 // Other version of json2us (useless) :
 // this.userDocument.title = this.fileTitle;
