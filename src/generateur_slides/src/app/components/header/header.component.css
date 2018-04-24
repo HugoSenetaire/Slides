@@ -1,0 +1,16 @@
+h4{
+  font-size: 32px;
+  font-family:sans-serif;
+  padding-top: 0.8vh;
+  padding-bottom: 0.8vh;
+  margin-top: 0;
+  margin-bottom: 0;
+  /* height: 4vh; */
+  width: 100%;
+  text-align: center;
+  background-color: #1ce;
+  background: linear-gradient(to left, rgba(17,204,238,0), rgba(17,204,238,1));
+  border:2px solid black;
+  text-shadow: black 1px 0 10px;
+  border-style:outset;
+}
