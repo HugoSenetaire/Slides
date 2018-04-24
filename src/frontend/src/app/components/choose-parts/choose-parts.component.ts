@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DndDropEvent, DropEffect } from "ngx-drag-drop";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DataService } from '../../services/data/data.service';
+import 'rxjs/add/operator/map';
 
 
 // interface NestableListItem {
@@ -80,7 +81,7 @@ export class ChoosePartsComponent {
   json2us(){
     //This function initialises the json doc received to better use it for html
     this.userDocument = new document();
-    this.dataService.getJson(20) //Change this to this.id
+    this.dataService.getJson(this.id) //Change this to this.id
       .then(data => {
         this.userDocument.sections = (data as document).sections;
         this.userDocument.title = this.fileTitle;
@@ -152,8 +153,60 @@ export class ChoosePartsComponent {
     }
   }
 
+  // oui(){
+  //   let title = "bei.<br>.<br>";
+  //   // let replacing = /.tex/;
+  //   let nbr = title.search('<br>');
+  //   console.log(nbr)
+  //   for (var i = 0; i<nbr;i++){
+  //     let newTitle = title.replace('<br>', '');
+  //     title = newTitle;
+  //     console.log(newTitle);
+  //   }
+  // }
+
   confirmParts(){
     this.showNext = true;
+    // Making the title less ugly
+    let title = this.userDocument.title;
+    let newTitle = title.replace('.tex', '');
+    this.userDocument.title = newTitle;
+
+    // Removing the <br>
+    for(var i=0; i<this.userDocument.sections.length; i++){
+      let text = this.userDocument.sections[i].text;
+      // let replacing = /<br>/;
+      // let nbr = text.search('<br>');
+      for(var l = 0; l<10; l++){
+        let newText = text.replace('\\', '');
+        text = newText;
+      }
+      this.userDocument.sections[i].text = text;
+
+      for(var j=0; j<this.userDocument.sections[i].sub_sections.length; j++){
+        let text2 = this.userDocument.sections[i].sub_sections[j].text;
+        let nbr2 = text2.search('<br>');
+        console.log(nbr2);
+        for(var l = 0; l<10; l++){
+          let newText2 = text2.replace('\\', '');
+          text2 = newText2;
+        }
+        this.userDocument.sections[i].sub_sections[j].text = text2;
+
+        for(var k=0; k<this.userDocument.sections[i].sub_sections[j].sub_sub_sections.length; k++){
+          let text3 = this.userDocument.sections[i].sub_sections[j].sub_sub_sections[k].text;
+          let nbr3 = text3.search('<br>');
+          for(var l = 0; l<10; l++){
+            let newText3 = text3.replace('\\', '');
+            text3 = newText3;
+          }
+          this.userDocument.sections[i].sub_sections[j].sub_sub_sections[k].text = text3;
+        }
+
+      }
+
+    }
+
     this.dataService.storeDocument(this.userDocument);
   }
 

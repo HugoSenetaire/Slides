@@ -12,7 +12,10 @@ export class LeftWindowComponent implements OnInit {
   userDocument : document;
 
   public constructor(public dataService: DataService) {
-    this.dataService.currentDocument.subscribe(doc => this.userDocument = doc);
+    // this.userDocument = new document();
+    this.dataService.currentDocument.subscribe(doc => {
+      this.userDocument = doc;
+  });
   }
 
 
@@ -20,9 +23,17 @@ export class LeftWindowComponent implements OnInit {
 
   }
 
-  oui(){
-    console.log(this.userDocument);
-  }
+  // oui(){
+  //   let title = "bei.<br>.<br>";
+  //   // let replacing = /.tex/;
+  //   let nbr = title.search('<br>');
+  //   console.log(nbr)
+  //   for (var i = 0; i<nbr;i++){
+  //     let newTitle = title.replace('<br>', '');
+  //     title = newTitle;
+  //     console.log(newTitle);
+  //   }
+  // }
 
 
 }

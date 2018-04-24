@@ -9,7 +9,28 @@
  -->
 
 
-<div [froalaEditor]>Voilà qui est parfait
+<!-- <div [froalaEditor]> -->
+  <h1>Your project : {{userDocument.title}}</h1>
+  <div class="" *ngFor='let section of userDocument.sections; let i = index'>
+    <div class="section" *ngIf='section.isChecked'>
+      <h2>{{i+1}}) {{section.title}}</h2>
+      <!-- There needs to be an innerHTML here because of json <br /> -->
+      <p [innerHTML]="section.text"></p>
 
-</div>
-<button type="button" name="button" (click)="oui()">AZI CLIQUE LAAAAA</button>
+      <div class="" *ngFor='let sub_section of section.sub_sections; let j = index'>
+        <div class="sub_section" *ngIf='sub_section.isChecked'>
+          <h3>{{i+1}}.{{j+1}}) {{sub_section.title}}</h3>
+          <p [innerHTML]="sub_section.text"></p>
+
+          <div class="" *ngFor='let sub_sub_section of sub_section.sub_sub_sections; let k = index'>
+            <div class="sub_sub_section" *ngIf='sub_sub_section.isChecked'>
+              <h4>{{i+1}}.{{j+1}}.{{k+1}}) {{sub_sub_section.title}}</h4>
+              <p [innerHTML]="sub_sub_section.text"></p>
+
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+  </div>
+<!-- </div> -->
