@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DndDropEvent } from 'ngx-drag-drop';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
 }
+

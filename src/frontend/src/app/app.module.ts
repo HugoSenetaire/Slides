@@ -13,6 +13,12 @@ import { ChoosePartsComponent } from './components/choose-parts/choose-parts.com
 import { HeaderComponent } from './components/header/header.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { DndModule } from 'ngx-drag-drop';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatCardModule,MatIconModule} from "@angular/material";
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+
 // Services
 import { UploadService } from './services/upload/upload.service'
 import { DataService } from './services/data/data.service'
@@ -39,7 +45,13 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    DndModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [
     UploadService,
@@ -48,3 +60,4 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export class PizzaPartyAppModule { }

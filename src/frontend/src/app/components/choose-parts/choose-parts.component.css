@@ -1,103 +1,32 @@
-h1{
-  color:#1ce;
-	text-align: left;
-	font-family: sans-serif;
-	padding: 20px;
-	border-bottom: 1px solid gray;
-	margin: 0 auto;
-}
-.main-window{
-  background-color: rgb(250,250,255);
-  box-shadow: 10px 10px 5px gray;
-  display: block;
-  width: 50%;
-  height: 80%;
-  margin: auto auto;
-  margin-top: 2%;
-  /* text-align: center;
-  box-sizing: content-box;
-  border: 2px solid black;
-  border-radius: 5px;
-  -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    position: relative;
-}
-
-.main-window:hover {
-	background-color: white;
-	box-shadow:15px 15px 8px grey;
-
-}
-
-.main-window p{
-  padding-left: 20px;
-}
-
-.tree{
-  padding-top: 2%;
-  padding-left: 20%;
-}
-
-
-.button {
-	font-family: sans-serif;
-	font-weight: bold;
-    border: 2px solid rgb(07,154,208);
-    padding: 10px;
-    background: #1ce;
-    color: white;
-    border-radius: 4px;
-	position: absolute;
-	padding-left: 20px;
-	padding-right: 20px;
-	bottom:0;
-    right:0;
-    margin-bottom: 15px;
-    margin-right: 15px;
-}
-
-b{
-  color: red;
-}
-
-.button:hover {
-	color: #25a5c4;
-    background: rgb(27,214,248);
-    cursor: pointer;
-    border:2px solid rgb(37,184,238);
-}
-
-
-
-
-
- */
-
-
 /***************************** Dropzone Styling *****************************/
 
-/**
- * The dnd-list should always have a min-height,
- * otherwise you can't drop to it once it's empty
- */
-.nestedDemo .dropzone ul[dnd-list] {
-    margin: 0px;
-    min-height: 42px;
-    padding-left: 0px;
-}
-
-.nestedDemo .dropzone li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    display: block;
-    padding: 0px;
-}
 
 /**
  * Reduce opacity of elements during the drag operation. This allows the user
  * to see where he is dropping his element, even if the element is huge. The
  * .dndDragging class is automatically set during the drag operation.
  */
+ :host {
+
+  display: block;
+  box-sizing: border-box;
+}
+
+mat-card {
+
+  transition: transform 200ms, opacity 200ms;
+}
+
+.layout-padding {
+    min-height: 40px;
+}
+
+.dndDraggingSource {
+
+  opacity: .5;
+  transform: scale(.98);
+}
+
 .nestedDemo .dropzone .dndDragging {
     opacity: 0.7;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChooseFileComponent} from '../choose-file/choose-file.component';
+import { ChooseFileComponent } from '../choose-file/choose-file.component';
 
 
 
