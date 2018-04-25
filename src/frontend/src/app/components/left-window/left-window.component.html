@@ -10,7 +10,7 @@
 
 
 <!-- <div [froalaEditor]> -->
-  <h1>Your project : {{userDocument.title}}</h1>
+  <h1>You are working on the following project : {{userDocument.title}}</h1>
   <div class="" *ngFor='let section of userDocument.sections; let i = index'>
     <div class="section" *ngIf='section.isChecked'>
       <h2>{{i+1}}) {{section.title}}</h2>

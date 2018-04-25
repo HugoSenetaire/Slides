@@ -23,19 +23,6 @@ export class LeftWindowComponent implements OnInit {
 
   }
 
-  // oui(){
-  //   let title = "bei.<br>.<br>";
-  //   // let replacing = /.tex/;
-  //   let nbr = title.search('<br>');
-  //   console.log(nbr)
-  //   for (var i = 0; i<nbr;i++){
-  //     let newTitle = title.replace('<br>', '');
-  //     title = newTitle;
-  //     console.log(newTitle);
-  //   }
-  // }
-
-
 }
 
 
