@@ -10,27 +10,183 @@
 
 
 <!-- <div [froalaEditor]> -->
-  <h1>You are working on the following project : {{userDocument.title}}</h1>
-  <div class="" *ngFor='let section of userDocument.sections; let i = index'>
-    <div class="section" *ngIf='section.isChecked'>
-      <h2>{{i+1}}) {{section.title}}</h2>
-      <!-- There needs to be an innerHTML here because of json <br /> -->
-      <p [innerHTML]="section.text"></p>
 
-      <div class="" *ngFor='let sub_section of section.sub_sections; let j = index'>
-        <div class="sub_section" *ngIf='sub_section.isChecked'>
-          <h3>{{i+1}}.{{j+1}}) {{sub_section.title}}</h3>
-          <p [innerHTML]="sub_section.text"></p>
 
-          <div class="" *ngFor='let sub_sub_section of sub_section.sub_sub_sections; let k = index'>
-            <div class="sub_sub_section" *ngIf='sub_sub_section.isChecked'>
-              <h4>{{i+1}}.{{j+1}}.{{k+1}}) {{sub_sub_section.title}}</h4>
-              <p [innerHTML]="sub_sub_section.text"></p>
+  <!-- <div class="angular-meditor">
+	<div class="angular-meditor-content ng-pristine ng-untouched ng-valid" contenteditable meditor-contenteditable ng-model="model.ngModel" ng-transclude>
+		<h2 class="ng-scope"> With inline content.</h2>
 
+	</div>
+
+</div>
+
+ -->
+ <h1>You are working on the following project : {{userDocument.title}}</h1>
+
+<div class="wb-tabs">
+	<div class="tabpanels">
+		<details id="details-panel1">
+			<summary>Code Beamer</summary>
+			<div [froalaEditor]>  \documentclass(beamer)
+
+
+\usetheme(default)
+
+\title(Photographie)
+\subtitle()
+
+\author()
+
+\institute[]
+()
+
+\date(2018)
+
+\subject()
+\AtBeginSubsection[]
+(
+  \begin(frame)(Outline)
+    \tableofcontents[currentsection,currentsubsection]
+  \end(frame)
+)
+
+% Let's get started
+\begin(document)
+
+\begin(frame)
+  \titlepage
+\end(frame)
+
+\begin(frame)(Outline)
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end(frame)
+\section(Effets manuels)
+
+\subsection(Le role de l'Aperture)
+\begin(frame)(Le role de l'Aperture)()
+ \begin(itemize)
+  \item (
+  L'aperture est l'ouverture du diaphragme
+  )
+  \item (
+  controler combien de lumiere rentre dans l'objectif
+  )
+  \end(itemize)
+\end(frame)
+
+\subsection(Le role de l'ISO)
+\subsubsection(Bas ISO)
+\subsubsection(Haut ISO)
+\begin(frame)(Le role de l'ISO)(Bas ISO)
+ \begin(itemize)
+  %\item (
+
+  %)
+  %\item (
+
+  %)
+  \end(itemize)
+\end(frame)
+\begin(frame)(Le role de l'ISO)(Haut ISO)
+ \begin(itemize)
+  %\item (
+
+  %)
+  %\item (
+
+  %)
+  \end(itemize)
+\end(frame)
+%\begin(frame)(First Slide Title)(Optional Subtitle)
+ % \begin(itemize)
+  %\item (
+   % My first point.
+  %)
+  %\item (
+   % My second point.
+  %)
+  %\end(itemize)
+%\end(frame)
+
+
+% You can reveal the parts of a slide one at a time
+% with the \pause command:
+
+\section(Effets digitaux)
+
+\subsection(Adobe Photoshop)
+\subsubsection(Adobe Lightroom)
+\subsubsection(Adobe Creative)
+\begin(frame)(Adobe Photoshop)(Adobe Lightroom)
+ \begin(itemize)
+  %\item (
+
+  %)
+  %\item (
+
+  %)
+  \end(itemize)
+\end(frame)
+\begin(frame)(Adobe Photoshop)(Adobe Creative)
+ \begin(itemize)
+  %\item (
+
+  %)
+  %\item (
+
+  %)
+  \end(itemize)
+\end(frame)
+\subsection(Adobe)
+\begin(frame)(Adobe)()
+ \begin(itemize)
+  %\item (
+
+  %)
+  %\item (
+
+  %)
+  \end(itemize)
+\end(frame)
+\subsection()
+% Placing a * after \section means it will not show in the
+% outline or table of contents.
+\section*(Summary)
+
+
+\end(document)
+
+
+</div>
+
+		</details>
+		<details id="details-panel2" open="open">
+			<summary>Source</summary>
+      <div class="" *ngFor='let section of userDocument.sections; let i = index'>
+        <div class="section" *ngIf='section.isChecked'>
+          <h2>{{i+1}}) {{section.title}}</h2>
+          <!-- There needs to be an innerHTML here because of json <br /> -->
+          <p [innerHTML]="section.text"></p>
+
+          <div class="" *ngFor='let sub_section of section.sub_sections; let j = index'>
+            <div class="sub_section" *ngIf='sub_section.isChecked'>
+              <h3>{{i+1}}.{{j+1}}) {{sub_section.title}}</h3>
+              <p [innerHTML]="sub_section.text"></p>
+
+              <div class="" *ngFor='let sub_sub_section of sub_section.sub_sub_sections; let k = index'>
+                <div class="sub_sub_section" *ngIf='sub_sub_section.isChecked'>
+                  <h4>{{i+1}}.{{j+1}}.{{k+1}}) {{sub_sub_section.title}}</h4>
+                  <p [innerHTML]="sub_sub_section.text"></p>
+
+                </div>
             </div>
         </div>
-    </div>
-    </div>
-  </div>
-  </div>
+        </div>
+      </div>
+      </div>
+		</details>
+	</div>
+</div>
+
 <!-- </div> -->
