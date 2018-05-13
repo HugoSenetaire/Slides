@@ -7,21 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RightWindowComponent implements OnInit {
   i:number = 0;
-  constructor() { }
+  constructor() {
+    this.i = 0;
+   }
 
   ngOnInit() {
   }
 
   compile(){
-    var beamerHeight = document.getElementById("beamer1").height;
-    console.log(beamerHeight);
-    beamerHeight = 0;
-    console.log(beamerHeight);
-    this.i +=1
-    if (this.i==2){
-      var beamerHeight2 = document.getElementById("beamer2").height;
-      beamerHeight2 = 0;
-      console.log(beamerHeight2);
+    // var beamerHeight = document.querySelector("beamer");
+    beamer.src = "../../assets/beamer2.pdf";
+    this.i += 1;
+    if (this.i == 2){
+      beamer.src = "../../assets/beamer3.pdf";
     }
   }
 
