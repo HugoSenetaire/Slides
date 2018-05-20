@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'latex', # Adding the thingy that stores latex files
     'api', # Adding the api to get post etc thingies on latex
+    'beamer',
     'rest_framework', # To make the api work
     'corsheaders', # To be able to transfer data over different port
 ]

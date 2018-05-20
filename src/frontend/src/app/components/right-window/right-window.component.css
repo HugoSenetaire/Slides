@@ -8,6 +8,48 @@
   background-color: white;
 }
 
+.header_right_window2{
+  width: 100%;
+  /* border: 3px solid black; */
+  border-bottom: 2px solid gray;
+  padding: 0;
+  margin: 0;
+  height: 50px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.header_right_window2 p{
+  font-weight: bold;
+  color: red;
+  margin-right: 20px;
+}
+
+.if{
+  display: flex;
+  flex-direction: row;
+
+}
+
+#droptarget{
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+}
+
+#droptarget:hover{
+  background-color: rgb(110, 223, 41);
+}
+
+#droptarget p{
+  font-weight: bold;
+  color : white;
+}
+
 .button_compile{
   margin-left: 2.5px;
   margin-top: 2.5px;

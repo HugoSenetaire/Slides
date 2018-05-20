@@ -3,6 +3,10 @@ p{
   /* text-align: center; */
 }
 
+h1{
+  border-bottom: solid 1px black;
+}
+
 .section{
   margin-left: 20px;
   margin-right: 20px;
