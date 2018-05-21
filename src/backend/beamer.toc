@@ -1,0 +1,7 @@
+\beamer@sectionintoc {1}{ Effets manuels }{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Le rôle de l'Aperture}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Le rôle du shutter speed}{5}{0}{1}
+\beamer@subsubsectionintoc {1}{2}{1}{Shutter speed : définition}{6}{0}{1}
+\beamer@subsubsectionintoc {1}{2}{2}{Shutter speed : effet de flou}{6}{0}{1}
+\beamer@sectionintoc {2}{ Effets digitaux }{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{Adobe Photoshop}{6}{0}{2}

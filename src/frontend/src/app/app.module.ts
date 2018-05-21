@@ -22,6 +22,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 // Services
 import { UploadService } from './services/upload/upload.service'
 import { DataService } from './services/data/data.service'
+// import { DomSanitizationService } from '@angular/platform-browser/domsanitizer'
 
 const appRoutes: Routes = [
   {path:'', component:ChooseFileComponent},
@@ -55,7 +56,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     UploadService,
-    DataService
+    DataService,
   ],
   bootstrap: [AppComponent]
 })

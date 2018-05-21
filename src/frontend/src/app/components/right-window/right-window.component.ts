@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data/data.service';
 import { HttpClient } from '@angular/common/http';
+// import { DomSanitizationService } from '@angular/platform-browser/domsanitizer';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-right-window',
@@ -8,18 +10,22 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./right-window.component.css']
 })
 export class RightWindowComponent implements OnInit {
+  public srcBeamer:string = 'http://localhost:8000/media/beamer.pdf';
   public i:number = -1;
   public j:number = -1;
   public k:number = -1;
   latexDocument : document;
   beamerDocument : document_beamer;
 
-  public constructor(public dataService: DataService, public http:HttpClient) {
+  public constructor(public dataService: DataService, public http:HttpClient, protected sanitizer:DomSanitizer) {
     // this.userDocument = new document();
     this.dataService.currentDocument.subscribe(doc => {
       this.latexDocument = doc;
   });
   this.begin_beamer();
+  // this.srcBeamer = '/home/lou/enpc/Slides/src/frontend/src/assets/beamer1.pdf';
+  // this.srcBeamer = '/home/lou/enpc/Slides/src/frontend/src/assets/beamer'+String(this.beamerDocument.id)+'.pdf';
+  // this.compile();
   }
 
 
@@ -44,7 +50,13 @@ export class RightWindowComponent implements OnInit {
     }
   }
 
-  compile(){
+
+  // public call_beamer_safe():SafeResourceUrl {
+  //   console.log(this.sanitizer.bypassSecurityTrustResourceUrl(this.srcBeamer));
+	// 	return this.sanitizer.bypassSecurityTrustResourceUrl(this.srcBeamer);
+	// }
+
+  send_data(){
     this.http.post('http://localhost:8000/beamer/', JSON.stringify(this.beamerDocument))
       .subscribe(
         res =>{
@@ -52,6 +64,44 @@ export class RightWindowComponent implements OnInit {
       },
       err => {console.log("Error occured")}
     );
+    this.wait(2000);
+  }
+
+  compile(){
+    var tag:string = '<embed src="http://localhost:8000/media/beamer.pdf" width="100%" height="670">';
+    console.log(tag);
+    $('#beamer').html(tag);
+    console.log("DONE COMPILING");
+  }
+
+  // load_pdf(path){
+  //   if(path==0){
+  //     $('#beamer').html('<iframe src="../../assets/beamer.pdf" width="100%" height="670"></iframe>');
+  //   }
+  //   else{
+  //     $('#beamer').html('<iframe src="../../assets/beamer1.pdf" width="100%" height="670"></iframe>');
+  //   }
+  // }
+
+  wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms){
+      end = new Date().getTime();
+    }
+  }
+
+  cancel(){
+    // this.http.post('http://localhost:8000/beamer/', JSON.stringify(this.beamerDocument))
+    //   .subscribe(
+    //     res =>{
+    //     console.log(res);
+    //   },
+    //   err => {console.log("Error occured")}
+    // );
+    // // console.log(this.beamerDocument);
+    // this.wait(7000);
+    // console.log(this.beamerDocument.id);
   }
 
   prec(){
@@ -292,9 +342,11 @@ class section_beamer {
 
 class document_beamer {
   title: string;
+  id:number;
   sections: section_beamer[];
   constructor(){
     this.title = "";
+    this.id = Math.random()* 100000000000000000000;
     this.sections = [];
   }
 }

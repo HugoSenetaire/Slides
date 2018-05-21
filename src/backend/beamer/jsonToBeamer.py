@@ -19,8 +19,9 @@ def jsonToBeamer(inputFile,outputFile):
             beamerText+="   \\end{itemize} \n \\end{frame}\n\n"
         for j in range(len(currentSection["sub_sections"])):
             currentSubSection=currentSection["sub_sections"][j]
-            beamerText+="\\subsection{{{}}} \n\n\\begin{{frame}}{{{}}}{{}}\n".format(currentSubSection["title"],currentSubSection["title"])
+            beamerText+="\\subsection{{{}}} \n\n".format(currentSubSection["title"])
             if len(currentSubSection["text"])>0:
+                beamerText+= "  \\begin{{frame}}{{{}}}{{}} \n\n  ".format(currentSubSection["title"])
                 beamerText+="   \\begin{itemize} \n"
                 for j in range(len(currentSubSection["text"])):
                     beamerText+="      \\item {{ \n         {} \n      }} \n".format(currentSubSection["text"][j])
@@ -28,10 +29,11 @@ def jsonToBeamer(inputFile,outputFile):
             if len(currentSubSection["sub_sub_sections"])>0:
                 for k in range(len(currentSubSection["sub_sub_sections"])):
                     currentSubSubSection=currentSubSection["sub_sub_sections"][k]
-                    beamerText+="\\subsubsection{{{}}} \n\n\\begin{{frame}}{{{}}}{{}}\n".format(currentSubSubSection["title"],currentSubSubSection["title"])
+                    beamerText+="\\subsubsection{{{}}} \n\n".format(currentSubSubSection["title"])
                     if len(currentSubSubSection["text"])>0:
+                        beamerText+="  \\begin{{frame}}{{{}}}{{}} \n\n  ".format(currentSubSubSection["title"])
                         beamerText+="   \\begin{itemize} \n"
-                        for j in range(len(currentSubSection["text"])):
+                        for j in range(len(currentSubSubSection["text"])):
                             beamerText+="      \\item {{ \n         {}\n      }} \n".format(currentSubSubSection["text"][j])
                         beamerText+="   \\end{itemize} \n \\end{frame}\n\n"
     beamerText+="\\end{document}"

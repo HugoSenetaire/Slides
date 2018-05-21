@@ -1,12 +1,13 @@
 <div class="header_right_window">
+  <button class="button_compile" (click)="send_data()">Send data</button>
   <button class="button_compile" (click)="compile()">Compile</button>
-  <button class="button_compile" >Cancel</button>
+  <button class="button_compile" (click)="cancel()" >Cancel</button>
 </div>
 
 <div class="header_right_window2">
   <div *ngIf="i>=0 && j==-1 && k==-1" class="if">
     <p style="color:blue">
-      Your are working on the following slide : <span style="color:red">{{beamerDocument.sections[i].title}}</span>
+      You are working on the following slide : <span style="color:red">{{beamerDocument.sections[i].title}}</span>
     </p>
     <button class="button_compile" (click)="prec()">Prec.</button>
     <button class="button_compile" (click)="suiv()">Suiv.</button>
@@ -31,8 +32,10 @@
 <p>DRAG ZONE</p>
 </div>
 
-<div >
-  <iframe src="../../assets/beamer1.pdf" width="100%" height="670"></iframe>
+<div #beamer id="beamer">
+  <!-- <iframe #beamer src="{{call_beamer_safe()}}" width="100%" height="670"></iframe> -->
+  <!-- <iframe src="assets/beamer1.pdf" width="100%" height="670"></iframe> -->
+  <iframe src="assets/beamer.pdf" width="100%" height="670"></iframe>
 </div>
   <!-- <embed id="beamer1" src="../../assets/beamer1.pdf" width="100%" height="770">
   <embed id="beamer2" src="../../assets/beamer2.pdf" width="100%" height="770">
