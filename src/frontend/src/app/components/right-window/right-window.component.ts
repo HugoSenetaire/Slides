@@ -57,6 +57,10 @@ export class RightWindowComponent implements OnInit {
 	// }
 
   send_data(){
+    this.send_data1();
+  }
+
+  send_data1(){
     this.http.post('http://localhost:8000/beamer/', JSON.stringify(this.beamerDocument))
       .subscribe(
         res =>{
@@ -64,10 +68,16 @@ export class RightWindowComponent implements OnInit {
       },
       err => {console.log("Error occured")}
     );
-    this.wait(2000);
+    this.wait(4000);
   }
 
   compile(){
+    this.post_compile();
+    // this.post_compile();
+    // this.post_compile();
+  }
+
+  post_compile(){
     var tag:string = '<embed src="http://localhost:8000/media/beamer.pdf" width="100%" height="670">';
     console.log(tag);
     $('#beamer').html(tag);

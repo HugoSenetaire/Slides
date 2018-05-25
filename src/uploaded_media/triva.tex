@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{hmargin=1.5cm,vmargin=1.5cm}
+
+\title{Moyennage non local}
+\author{Marius Fouquerand - Louis Montaut }
+\date{}
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+Le document ici rédigé s'intéresse aux méthodes de débruitage par moyennage non-local. D'un point de vue global, lorsqu'il s'agit de débruiter les images, on souhaite supprimer les hautes fréquences, c'est à dire les variations trop importantes d'intensité d'un pixel à l'autre. Pour ce faire, on moyenne la valeur de chaque pixel en fonction de son entourage. La méthode de moyennage non-locale est innovante en ce qu'elle moyenne la valeur d'un pixel en parcourant toute l'image et en s'intéressant aux pixels semblable à celui qu'on veut moyenner.
+
+\section*{Filtrage par moyennage non-local : Definition} 
+
+Dans une image, il y a des redondances. Pour réduire le bruit par moyennage non-local, on moyenner l'intensité  d'un point en comparant ce dernier à des points ayant un voisinage similaire. \\
+On travaille sur une image $v$ (intensité de l'image) définie sur $\Omega \subset \mathbb{R}^2$. \\
+On caractérise les similitudes entre les voisinages de deux points $x$ et $y$ par une fonction $f(x,y)$. On définit alors l'image débruitée $u$ en $x$ ainsi : $$u(x) = \frac{1}{C(x)} \int_{y \in \Omega}f(x,y) v(y) dy  $$ 
+
+Où C(x) est une constante de normalisation.\\
+\\
+Un choix classique est de prendre $$f(x,y) = exp(- \frac{(G_a * |v(x+.)-v(y + .)|^2)(0)}{h^2}) $$. 
+
+avec $$ (G_a * |v(x+.)-v(y + .)|^2)(0) = \int_{\mathbb{R}^2} (G_a(t) |v(x+t)-v(y+t)|^2) dt  $$ 
+
+avec $G_a$ un noyau gaussien d'écart-type a. 
+\section*{Algorithme de moyennage non-local}
+Passons au cas discret, le cas de la vraie vie, dans lequel nous avons une image $I$ discretisée en pixels.\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{explication.png}
+    \caption{Le moyennage local}
+\end{figure}
+\newpage
+On définit le voisinage d'un point $i$, $\mathcal{N}_i \subset I$ de la manière suivante : $\forall i \in I  $
+\begin{itemize}
+    \item $i \in \mathcal{N}_i$
+    \item $i \in \mathcal{N}_j\Rightarrow j \in \mathcal{N}_i$
+\end{itemize}
+L'algorithme de moyennage non-local calcul pour chaque pixel $i$ d'une image $I$ d'intensité $v$ une valeur de l'instensité de image débruitée $NL[v](i)$, définie de la sorte:
+$$NL[v](i) = \sum_{j \in I} w(i,j)v(j)$$
+
+où $$w(i,j) = \frac{1}{Z(i)}exp(\frac{||v(\mathcal{N}_i)-v(\mathcal{N}_{j})||_{2,a}^{2}}{h^{2}})$$
+La norme $||v(\mathcal{N}_{i})-v(\mathcal{N}_j)||_{2,a}^{2}$ est la norme euclidienne pondérée par le noyau gaussien d'écart-type a.
+
+
+
+\section*{Experimentation}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.6]{NL}
+    \caption{Mise en pratique de l'algorithme sur une photo bruitée}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.7]{comparaisons.png}
+    \caption{Comparaison de différentes méthodes de débruitage. De haut en bas, de gauche à droite : Image bruitée, Gauss filtering, anisotropic filtering, Total variation, Neighborhood filtering et algorithme de moyennage non-local}
+\end{figure}
+
+\section*{Une potentielle amélioration avec le filtre bilatéral}
+Les problèmes rencontrés sont similaires à ceux de la réduction classique de bruit : les contours, les détails et les structures fines ressemblent à du bruit et peuvent être éliminées par l'algorithme. Dans le cas classique ("moyennage local"), la technique du \textit{filtre bilatéral} apportait une solution à ce problème. On peut donc tout à fait imaginer une solution similaire : dans la définition de $f$ on remplace le noyau gaussien par les deux noyaux définis dans le filtre bilatéral.  
+\end{document}
+

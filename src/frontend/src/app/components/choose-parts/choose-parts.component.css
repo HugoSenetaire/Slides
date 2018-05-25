@@ -11,7 +11,7 @@ h1{
   box-shadow: 10px 10px 5px gray;
   display: block;
   width: 50%;
-  height: 80%;
+  height: auto;
   margin: auto auto;
   margin-top: 2%;
   /* text-align: center; */
@@ -37,6 +37,7 @@ h1{
   padding-top: 1%;
   padding-left: 15%;
   padding-bottom: 2%;
+  /* overflow-y: scroll; */
 }
 
 ul{

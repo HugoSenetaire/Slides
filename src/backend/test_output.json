@@ -1,0 +1,58 @@
+{
+    "title": "Moyennage non local",
+    "sections": [
+        {
+            "title": "Filtrage par moyennage non-local : Definition",
+            "text": " <br>",
+            "sub_sections": [
+                {
+                    "title": "G\u00e9n\u00e9rale",
+                    "text": "<br>Dans une image, il y a des redondances. Pour r\u00e9duire le bruit par moyennage non-local, on moyenner l'intensit\u00e9  d'un point en comparant ce dernier \u00e0 des points ayant un voisinage similaire. \\\\<br>On travaille sur une image $v$ (intensit\u00e9 de l'image) d\u00e9finie sur $\\Omega \\subset \\mathbb{R}^2$. \\\\<br>On caract\u00e9rise les similitudes entre les voisinages de deux points $x$ et $y$ par une fonction $f(x,y)$. On d\u00e9finit alors l'image d\u00e9bruit\u00e9e $u$ en $x$ ainsi : $$u(x) = \\frac{1}{C(x)} \\int_{y \\in \\Omega}f(x,y) v(y) dy  $$ <br>",
+                    "sub_sub_sections": []
+                },
+                {
+                    "title": "Norme",
+                    "text": "<br>O\u00f9 C(x) est une constante de normalisation.\\\\<br>\\\\<br>Un choix classique est de prendre $$f(x,y) = exp(- \\frac{(G_a * |v(x+.)-v(y + .)|^2)(0)}{h^2}) $$. <br><br>avec $$ (G_a * |v(x+.)-v(y + .)|^2)(0) = \\int_{\\mathbb{R}^2} (G_a(t) |v(x+t)-v(y+t)|^2) dt  $$ <br><br>avec $G_a$ un noyau gaussien d'\u00e9cart-type a. <br>",
+                    "sub_sub_sections": []
+                }
+            ]
+        },
+        {
+            "title": "Algorithme de moyennage non-local",
+            "text": "<br>",
+            "sub_sections": [
+                {
+                    "title": "Description g\u00e9n\u00e9rale",
+                    "text": "<br>Passons au cas discret, le cas de la vraie vie, dans lequel nous avons une image $I$ discretis\u00e9e en pixels.\\\\<br>\\begin{figure}[h!]<br>    \\centering<br>    \\includegraphics[scale=0.5]{explication.png}<br>    \\caption{Le moyennage local}<br>\\end{figure}<br>\\newpage<br>On d\u00e9finit le voisinage d'un point $i$, $\\mathcal{N}_i \\subset I$ de la mani\u00e8re suivante : $\\forall i \\in I  $<br>\\begin{itemize}<br>    \\item $i \\in \\mathcal{N}_i$<br>    \\item $i \\in \\mathcal{N}_j\\Rightarrow j \\in \\mathcal{N}_i$<br>\\end{itemize}<br>L'algorithme de moyennage non-local calcul pour chaque pixel $i$ d'une image $I$ d'intensit\u00e9 $v$ une valeur de l'instensit\u00e9 de image d\u00e9bruit\u00e9e $NL[v](i)$, d\u00e9finie de la sorte:<br>$$NL[v](i) = \\sum_{j \\in I} w(i,j)v(j)$$<br><br>o\u00f9 $$w(i,j) = \\frac{1}{Z(i)}exp(\\frac{||v(\\mathcal{N}_i)-v(\\mathcal{N}_{j})||_{2,a}^{2}}{h^{2}})$$<br>",
+                    "sub_sub_sections": []
+                },
+                {
+                    "title": "Retour sur la norme",
+                    "text": "<br>La norme $||v(\\mathcal{N}_{i})-v(\\mathcal{N}_j)||_{2,a}^{2}$ est la norme euclidienne pond\u00e9r\u00e9e par le noyau gaussien d'\u00e9cart-type a.<br><br><br><br>",
+                    "sub_sub_sections": []
+                }
+            ]
+        },
+        {
+            "title": "Experimentation",
+            "text": "<br>",
+            "sub_sections": [
+                {
+                    "title": "Mise en pratique",
+                    "text": "<br>\\begin{figure}[ht!]<br>    \\centering<br>    \\includegraphics[scale=0.6]{NL}<br>    \\caption{Mise en pratique de l'algorithme sur une photo bruit\u00e9e}<br>\\end{figure}<br><br>",
+                    "sub_sub_sections": []
+                },
+                {
+                    "title": "Comparaison",
+                    "text": "<br>\\begin{figure}[ht!]<br>    \\centering<br>    \\includegraphics[scale=0.7]{comparaisons.png}<br>    \\caption{Comparaison de diff\u00e9rentes m\u00e9thodes de d\u00e9bruitage. De haut en bas, de gauche \u00e0 droite : Image bruit\u00e9e, Gauss filtering, anisotropic filtering, Total variation, Neighborhood filtering et algorithme de moyennage non-local}<br>\\end{figure}<br><br>",
+                    "sub_sub_sections": []
+                }
+            ]
+        },
+        {
+            "title": "Une potentielle am\u00e9lioration avec le filtre bilat\u00e9ral",
+            "text": "<br>Les probl\u00e8mes rencontr\u00e9s sont similaires \u00e0 ceux de la r\u00e9duction classique de bruit : les contours, les d\u00e9tails et les structures fines ressemblent \u00e0 du bruit et peuvent \u00eatre \u00e9limin\u00e9es par l'algorithme. Dans le cas classique (\"moyennage local\"), la technique du \\textit{filtre bilat\u00e9ral} apportait une solution \u00e0 ce probl\u00e8me. On peut donc tout \u00e0 fait imaginer une solution similaire : dans la d\u00e9finition de $f$ on remplace le noyau gaussien par les deux noyaux d\u00e9finis dans le filtre bilat\u00e9ral.  <br>\\end{document}<br><br>",
+            "sub_sections": []
+        }
+    ]
+}
